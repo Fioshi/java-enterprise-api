@@ -35,8 +35,27 @@ public class Funcionario {
     @JoinColumn(name = "id_reuniao")
     private Reuniao reuniao;
 
-    public void setReuniao(Reuniao reuniao){
+    private boolean status;
+
+    public void setReuniao(Reuniao reuniao) {
         this.reuniao = reuniao;
+    }
+
+    public void excluir() {
+        this.status = false;
+    }
+
+    public void reuniaoConcluida() {
+        this.reuniao = null;
+    }
+
+    public void atualizar(DadosAtualizacaoFuncionario dados) {
+        if (dados.cpf() != null)
+            this.cpf = dados.cpf();
+        if (dados.nome() != null)
+            this.nome = dados.nome();
+        if (dados.sobrenome() != null)
+            this.sobrenome = dados.sobrenome();
     }
 
     public Funcionario(DadosCadastroFuncionario dados, Departamento departamento) {
@@ -44,5 +63,7 @@ public class Funcionario {
         this.sobrenome = dados.sobrenome();
         this.cpf = dados.cpf();
         this.departamento = departamento;
+        this.status = true;
     }
 }
+

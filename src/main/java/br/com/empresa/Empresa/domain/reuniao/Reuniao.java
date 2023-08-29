@@ -31,9 +31,16 @@ public class Reuniao {
     @Enumerated(EnumType.STRING)
     private TiposReuniao tipo;
 
+    private boolean status;
+
     public Reuniao(DadosAgendamentoReuniao dados, LinkedList<Funcionario> listF) {
+        this.status = true;
         this.horario = dados.horario();
         this.tipo = dados.tipo();
         this.funcionarios = listF;
+    }
+
+    public void excluir() {
+        this.status = false;
     }
 }
