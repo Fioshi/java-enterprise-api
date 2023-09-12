@@ -1,5 +1,6 @@
 package br.com.empresa.Empresa.controller;
 
+import br.com.empresa.Empresa.domain.email.service.EmailService;
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
 import br.com.empresa.Empresa.domain.funcionario.FuncionarioRepository;
 import br.com.empresa.Empresa.domain.reuniao.DadosAgendamentoReuniao;
@@ -30,6 +31,9 @@ public class ReuniaoController {
     @Autowired
     private List<ValidadorAgendarReuniao> validadores;
 
+    @Autowired
+    private EmailService emailService;
+
     @PostMapping
     @Transactional
     public ResponseEntity agendar(@RequestBody @Validated DadosAgendamentoReuniao dados) {
@@ -48,6 +52,7 @@ public class ReuniaoController {
         for (Funcionario f:
                 listF) {
             f.setReuniao(reuniao);
+            emailService.enviarEmailReuniao(f);
         }
 
         reuniaoRepository.save(reuniao);

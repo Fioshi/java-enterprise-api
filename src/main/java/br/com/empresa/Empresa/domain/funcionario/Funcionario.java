@@ -27,6 +27,8 @@ public class Funcionario {
 
     private String cpf;
 
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;
@@ -63,6 +65,7 @@ public class Funcionario {
         this.sobrenome = dados.sobrenome();
         this.cpf = dados.cpf();
         this.departamento = departamento;
+        this.email = dados.email();
         this.status = true;
     }
 }

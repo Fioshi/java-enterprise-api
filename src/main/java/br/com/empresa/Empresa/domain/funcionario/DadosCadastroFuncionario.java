@@ -16,6 +16,9 @@ public record DadosCadastroFuncionario(
         @Pattern(regexp = "\\d{11}")
         String cpf,
 
+        @NotBlank
+        String email,
+
         @NotNull
         Long departamento
     ) {

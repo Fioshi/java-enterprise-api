@@ -20,6 +20,7 @@ public class AgendarValidador implements ValidadorAgendarReuniao{
     @Autowired
     private ReuniaoRepository reuniaoRepository;
 
+    @Override
     public void validar(DadosAgendamentoReuniao dados) {
 
     }
