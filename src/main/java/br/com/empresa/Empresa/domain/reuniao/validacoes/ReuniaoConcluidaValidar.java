@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Component
-public class TempoValidador {
+public class ReuniaoConcluidaValidar {
 
     @Autowired
     private ReuniaoRepository reuniaoRepository;
