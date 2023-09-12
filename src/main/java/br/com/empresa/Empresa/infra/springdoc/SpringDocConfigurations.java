@@ -21,7 +21,7 @@ public class SpringDocConfigurations {
                                 "departamentos. Feito com finalidade de marcação de reuniões")
                         .contact(new Contact()
                                 .name("Time Backend")
-                                .email("backend@voll.med"))
+                                .email("backend@empresa"))
                         .license(new License()
                                 .name("Apache 2.0")
                                 .url("http://empresa/api/licenca")));
