@@ -13,7 +13,7 @@ public record DadosCadastroFuncionario(
         String sobrenome,
 
         @NotBlank
-        @Pattern(regexp = "\\d{11}")
+        @Pattern(regexp = "\\b\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}\\b\n")
         String cpf,
 
         @NotBlank

@@ -49,10 +49,12 @@ public class EmailService {
         var hora = f.getReuniao().getHorario().getHour();
         var minuto = f.getReuniao().getHorario().getMinute();
         var mes = f.getReuniao().getHorario().getMonthValue();
+        var motivo = f.getReuniao().getTipo();
 
-        return "<h1>Reunião Marcada</h1>" +
+        return "<h1>Reunião Marcada &#128172;</h1>" +
                 "<p> Olá <b>" + f.getNome() + "</b> você está incluido em uma " +
                 "reunião " +
-                "que acontecera as <b>" + hora + ":" + minuto + "</b> do dia <b>" + dia + " do " + mes + "</b>";
+                "que acontecera as <b>" + hora + ":" + minuto + "</b> do dia <b>" + dia + "/" + mes + "</b>" +
+                "<p><b>Motivo:</b> " + motivo.toString().toLowerCase() + "</p>";
     }
 }
