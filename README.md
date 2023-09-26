@@ -2,7 +2,7 @@
 
 Projeto API Empresa feito para realizar controle de funcionarios, departamento e reuniões.
 
-> Em desenvolvimento
+> Finalizado
 
 API produzida com **Spring-Boot** com **Spring-web, bean validation e spring-data JPA** até o momento
 
