@@ -4,7 +4,7 @@ public enum TiposReuniao {
 
     PLANEJAMENTO,
     FEEDBACK,
-    INFORMAÇÃO,
+    INFORMACAO,
     BRAINSTORM,
     TREINAMENTO,
     OUTROS

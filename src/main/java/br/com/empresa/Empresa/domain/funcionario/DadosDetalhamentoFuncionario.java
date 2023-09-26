@@ -8,6 +8,8 @@ public record DadosDetalhamentoFuncionario(
         String nome,
         String sobrenome,
         String cpf,
+
+        String email,
         TiposDepartamento departamento) {
 
     public DadosDetalhamentoFuncionario(Funcionario funcionario){
@@ -15,6 +17,7 @@ public record DadosDetalhamentoFuncionario(
                 funcionario.getNome(),
                 funcionario.getSobrenome(),
                 funcionario.getCpf(),
+                funcionario.getEmail(),
                 funcionario.getDepartamento().getNome());
     }
 
