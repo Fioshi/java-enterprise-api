@@ -30,3 +30,12 @@ rode a aplicação e execute a seguinte URL no navegador de preferência:
 
 `http://localhost:8080/swagger-ui.html`
 
+Para conseguir usar com sucesso o sistema de envio de emails da aplicação será necessario efetuar algumas configurações no `application.properties`
+
+```
+spring.mail.username=********@gmail.com
+spring.mail.password=**************
+support.mail=*****@gmail.com
+```
+Substitua o "username" e "support.mail" pelo mesmo email que quiser utilizar, e na senha coloque sua senha usual de login. Caso tenha ferificação em 2 etapas, será necessârio utilizar uma senha de app. Para conseguir a sua siga esses passos do proprio google
+`https://support.google.com/accounts/answer/185833?hl=pt-BR`
