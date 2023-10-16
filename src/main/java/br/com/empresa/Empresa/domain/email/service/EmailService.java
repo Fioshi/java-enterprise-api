@@ -51,10 +51,17 @@ public class EmailService {
         var mes = f.getReuniao().getHorario().getMonthValue();
         var motivo = f.getReuniao().getTipo();
 
-        return "<h1>Reunião Marcada &#128172;</h1>" +
-                "<p> Olá <b>" + f.getNome() + "</b> você está incluido em uma " +
-                "reunião " +
-                "que acontecera as <b>" + hora + ":" + minuto + "</b> do dia <b>" + dia + "/" + mes + "</b>" +
-                "<p><b>Motivo:</b> " + motivo.toString().toLowerCase() + "</p>";
+        return
+        "<div>" +
+        "<p style=>Prezado(a) "+ f.getNome() +",</p>" +
+        "<p>Espero que esta mensagem o encontre bem. Gostaria de convidá-lo(a) para uma reunião importante agendada para: </p>" +
+        "<p>Data da Reunião: " + dia + "/" + mes + " Horario: " + hora + ":" + minuto + "</p>" +
+        "<p>Motivo da Reunião: <em>"+ motivo.toString().toLowerCase() +"</em></p>" +
+        "<p>Por favor, confirme sua disponibilidade para esta reunião o mais breve possível.</p>" +
+        "<p>Se você tiver alguma dúvida ou precisar de mais informações, não hesite em entrar em contato conosco.</p>" +
+        "<p>Estou ansioso(a) para discutir com você e nossa equipe.</p>" +
+        "<p>Obrigado(a) e cumprimentos,</p>" +
+        "<p>EmpresaAPI</p>" +
+        "</div>";
     }
 }

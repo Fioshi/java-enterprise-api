@@ -1,11 +1,7 @@
 package br.com.empresa.Empresa.controller;
 
 import br.com.empresa.Empresa.domain.departamento.DepartamentoRepository;
-import br.com.empresa.Empresa.domain.funcionario.DadosCadastroFuncionario;
-import br.com.empresa.Empresa.domain.funcionario.DadosDetalhamentoFuncionario;
-import br.com.empresa.Empresa.domain.funcionario.Funcionario;
-import br.com.empresa.Empresa.domain.funcionario.FuncionarioRepository;
-import br.com.empresa.Empresa.domain.funcionario.DadosAtualizacaoFuncionario;
+import br.com.empresa.Empresa.domain.funcionario.*;
 import br.com.empresa.Empresa.domain.funcionario.validacoes.ValidadorCadastroFuncionario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +13,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("funcionario")
+@RequestMapping("/api/funcionario")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FuncionarioController {
 
     @Autowired
@@ -29,6 +26,9 @@ public class FuncionarioController {
     @Autowired
     private List<ValidadorCadastroFuncionario> validadores;
 
+    @Autowired
+    private FuncionarioService funcionarioService;
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroFuncionario dados,
@@ -38,11 +38,11 @@ public class FuncionarioController {
 
         var departamento = departamentoRepository.getReferenceById(dados.departamento());
         var funcionario = new Funcionario(dados, departamento);
-        departamento.getFuncionarios().add(funcionario);
 
         var uri = uriBuilder.path("/funcionario/{id}").buildAndExpand(funcionario.getId()).toUri();
 
         funcionarioRepository.save(funcionario);
+        departamento.getFuncionarios().add(funcionario);
 
         return ResponseEntity.created(uri).body(new DadosDetalhamentoFuncionario(funcionario));
     }

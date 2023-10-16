@@ -38,10 +38,10 @@ public class ReuniaoController {
     @Transactional
     public ResponseEntity agendar(@RequestBody @Validated DadosAgendamentoReuniao dados) {
 
+        validadores.forEach(v -> v.validar(dados));
+
         var list = dados.funcionarios();
         var listF = new LinkedList<Funcionario>();
-
-        validadores.forEach(v -> v.validar(dados));
 
         for (Long l :
                 list) {
@@ -59,7 +59,4 @@ public class ReuniaoController {
 
         return ResponseEntity.ok(new DadosDetalhamentoReuniao(reuniao));
     }
-
-
-
 }

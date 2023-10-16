@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 @Component
 public class ReuniaoConcluidaValidar {
