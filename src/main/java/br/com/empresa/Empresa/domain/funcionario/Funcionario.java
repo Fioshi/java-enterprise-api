@@ -58,6 +58,8 @@ public class Funcionario {
             this.nome = dados.nome();
         if (dados.sobrenome() != null)
             this.sobrenome = dados.sobrenome();
+        if (dados.email() != null)
+            this.email = dados.email();
     }
 
     public Funcionario(DadosCadastroFuncionario dados, Departamento departamento) {
