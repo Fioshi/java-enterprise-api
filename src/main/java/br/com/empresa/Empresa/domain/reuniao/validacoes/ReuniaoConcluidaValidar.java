@@ -30,18 +30,15 @@ public class ReuniaoConcluidaValidar {
         var reuniaoList = reuniaoRepository.findAllByStatusTrue();
         var funcionarioList = funcionarioRepository.findAll();
 
-        for (Reuniao r :
-                reuniaoList) {
-            System.out.println(Duration.between(agora, r.getHorario()).toMinutes());
-            if (Duration.between(agora, r.getHorario()).toMinutes() <= 0) {
-                for (Funcionario f:
-                     funcionarioList) {
-                    if (f.getReuniao().equals(r)){
-                        f.reuniaoConcluida();
-                        r.excluir();
+        reuniaoList.forEach(r -> {
+            if (Duration.between(agora, r.getHorario()).toMinutes() < 0) {
+                r.excluir();
+                funcionarioList.forEach(fun -> {
+                    if (fun.getReuniao().equals(r)) {
+                        fun.reuniaoConcluida();
                     }
-                }
+                });
             }
-        }
+        });
     }
 }
