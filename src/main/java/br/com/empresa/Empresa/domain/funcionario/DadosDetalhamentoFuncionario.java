@@ -12,7 +12,10 @@ public record DadosDetalhamentoFuncionario(
         String cpf,
 
         String email,
-        String departamento) {
+        String departamento,
+
+        Boolean status
+        ) {
 
     public DadosDetalhamentoFuncionario(Funcionario funcionario){
         this(
@@ -21,7 +24,8 @@ public record DadosDetalhamentoFuncionario(
                 funcionario.getSobrenome(),
                 funcionario.getCpf(),
                 funcionario.getEmail(),
-                funcionario.getDepartamento().getNome().toString().toLowerCase());
+                funcionario.getDepartamento().getNome().toString().toLowerCase(),
+                funcionario.isStatus());
     }
 
 }

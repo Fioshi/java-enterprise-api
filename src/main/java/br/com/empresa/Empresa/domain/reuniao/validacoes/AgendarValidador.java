@@ -30,7 +30,11 @@ public class AgendarValidador implements ValidadorAgendarReuniao{
 
         for (Reuniao r:
                 listR){
-            if ( Duration.between(r.getHorario(), dados.horario()).toHours() <= 1)
+            System.out.println(r.getHorario() + " ----------- " + Duration.between(dados.horario(),r.getHorario()).toHours());
+            System.out.println(r.getHorario() + " ----------- " + Duration.between(r.getHorario(),dados.horario()).toHours());
+
+            if (Duration.between(dados.horario(), r.getHorario()).toHours() == 1 || Duration.between(dados.horario(),
+                    r.getHorario()).toHours() == 0)
                 throw new ValidarException("Já há uma reunião proxima desse horario, o tempo entre as reuniões é de 1" +
                         " hora");
         }

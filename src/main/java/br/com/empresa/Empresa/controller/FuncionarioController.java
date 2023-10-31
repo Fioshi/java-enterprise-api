@@ -19,7 +19,6 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/funcionario")
-@CrossOrigin(origins = "http://localhost:4200")
 public class FuncionarioController {
 
     @Autowired
@@ -68,11 +67,18 @@ public class FuncionarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Stream<DadosDetalhamentoFuncionario>> listar(@PageableDefault(size = 4,
+    public ResponseEntity<Stream<DadosDetalhamentoFuncionario>> listar(@PageableDefault(size = 5,
             sort = {"nome"}) Pageable pageable) {
         var page = funcionarioRepository.findAllByStatusTrue(pageable).stream()
                 .map(DadosDetalhamentoFuncionario::new);
         return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/busca/all")
+    public ResponseEntity buscaAll(){
+        var funcionarios =
+                funcionarioRepository.findAllByStatusTrueOrderByNome().stream().map(DadosDetalhamentoFuncionario::new);
+        return ResponseEntity.ok(funcionarios);
     }
 
     @GetMapping("/busca")
