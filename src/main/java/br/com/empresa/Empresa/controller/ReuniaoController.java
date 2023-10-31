@@ -19,7 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("reuniao")
+@RequestMapping("/api/reuniao")
 public class ReuniaoController {
 
     @Autowired
@@ -34,6 +34,13 @@ public class ReuniaoController {
     @Autowired
     private EmailService emailService;
 
+    @GetMapping
+    public ResponseEntity listar() {
+        var lista = reuniaoRepository.findAll()
+                .stream().map(DadosDetalhamentoReuniao::new);
+        return ResponseEntity.ok(lista);
+    }
+
     @PostMapping
     @Transactional
     public ResponseEntity agendar(@RequestBody @Validated DadosAgendamentoReuniao dados) {
@@ -43,17 +50,16 @@ public class ReuniaoController {
         var list = dados.funcionarios();
         var listF = new LinkedList<Funcionario>();
 
-        for (Long l :
-                list) {
+        list.forEach(l -> {
             listF.add(funcionarioRepository.getReferenceById(l));
-        }
+        });
+
         var reuniao = new Reuniao(dados, listF);
 
-        for (Funcionario f:
-                listF) {
-            f.setReuniao(reuniao);
-            emailService.enviarEmailReuniao(f);
-        }
+        listF.forEach(lf -> {
+            lf.setReuniao(reuniao);
+            emailService.enviarEmailReuniao(lf);
+        });
 
         reuniaoRepository.save(reuniao);
 
