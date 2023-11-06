@@ -75,17 +75,17 @@ public class FuncionarioController {
     }
 
     @GetMapping("/busca/all")
-    public ResponseEntity buscaAll(){
+    public ResponseEntity buscaAll() {
         var funcionarios =
                 funcionarioRepository.findAllByStatusTrueOrderByNome().stream().map(DadosDetalhamentoFuncionario::new);
         return ResponseEntity.ok(funcionarios);
     }
 
     @GetMapping("/busca")
-    public ResponseEntity buscarFiltrado(@RequestParam("keyword") String keyword){
+    public ResponseEntity buscarFiltrado(@RequestParam("keyword") String keyword) {
         var funcionario = funcionarioRepository.findByCpfContaining(keyword);
-        List<DadosDetalhamentoFuncionario>list = new LinkedList<>();
-        funcionario.forEach( f -> {
+        List<DadosDetalhamentoFuncionario> list = new LinkedList<>();
+        funcionario.forEach(f -> {
             list.add(new DadosDetalhamentoFuncionario(f));
         });
         return ResponseEntity.ok(list);
@@ -95,6 +95,6 @@ public class FuncionarioController {
     @GetMapping("/{id}")
     public ResponseEntity buscar(@PathVariable Long id) {
         var funcionario = funcionarioRepository.getReferenceById(id);
-       return ResponseEntity.ok(new DadosDetalhamentoFuncionario(funcionario));
-   }
+        return ResponseEntity.ok(new DadosDetalhamentoFuncionario(funcionario));
+    }
 }

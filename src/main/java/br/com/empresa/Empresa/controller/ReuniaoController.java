@@ -38,6 +38,7 @@ public class ReuniaoController {
     public ResponseEntity listar() {
         var lista = reuniaoRepository.findAll()
                 .stream().map(DadosDetalhamentoReuniao::new);
+
         return ResponseEntity.ok(lista);
     }
 
