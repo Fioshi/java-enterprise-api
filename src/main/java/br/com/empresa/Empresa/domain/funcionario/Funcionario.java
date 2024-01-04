@@ -1,12 +1,15 @@
 package br.com.empresa.Empresa.domain.funcionario;
 
 import br.com.empresa.Empresa.domain.departamento.Departamento;
+import br.com.empresa.Empresa.domain.endereco.Endereco;
 import br.com.empresa.Empresa.domain.reuniao.Reuniao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_funcionario")
@@ -29,6 +32,8 @@ public class Funcionario {
 
     private String email;
 
+    private BigDecimal salario;
+
     @ManyToOne
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;
@@ -36,6 +41,10 @@ public class Funcionario {
     @ManyToOne
     @JoinColumn(name = "id_reuniao")
     private Reuniao reuniao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_endereco")
+    private Endereco endereco;
 
     private boolean status;
 
@@ -62,13 +71,15 @@ public class Funcionario {
             this.email = dados.email();
     }
 
-    public Funcionario(DadosCadastroFuncionario dados, Departamento departamento) {
+    public Funcionario(DadosCadastroFuncionario dados, Departamento departamento, Endereco endereco) {
         this.nome = dados.nome();
         this.sobrenome = dados.sobrenome();
         this.cpf = dados.cpf();
         this.departamento = departamento;
         this.email = dados.email();
         this.status = true;
+        this.endereco = endereco;
+        this.salario = dados.salario();
     }
 }
 
