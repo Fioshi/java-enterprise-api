@@ -25,26 +25,20 @@ public class AgendarValidador implements ValidadorAgendarReuniao{
     @Override
     public void validar(DadosAgendamentoReuniao dados) {
         var agora = LocalDateTime.now();
-        var list = dados.funcionarios();
+        var list = funcionarioRepository.findAllById(dados.funcionarios());
         var listR = reuniaoRepository.findAllByStatusTrue();
 
-        for (Reuniao r:
-                listR){
-            System.out.println(r.getHorario() + " ----------- " + Duration.between(dados.horario(),r.getHorario()).toHours());
-            System.out.println(r.getHorario() + " ----------- " + Duration.between(r.getHorario(),dados.horario()).toHours());
-
+        listR.forEach( r -> {
             if (Duration.between(dados.horario(), r.getHorario()).toHours() == 1 || Duration.between(dados.horario(),
                     r.getHorario()).toHours() == 0)
                 throw new ValidarException("Já há uma reunião proxima desse horario, o tempo entre as reuniões é de 1" +
                         " hora");
-        }
+        });
 
-        for (Long l :
-                list) {
-            var func = funcionarioRepository.getReferenceById(l);
-            if (func.getReuniao() != null)
+        list.forEach( l -> {
+            if (l.getReuniao() != null)
                 throw new ValidarException("Funcionario já com reunião marcada");
-        }
+        });
 
         if (Duration.between(agora, dados.horario()).toDays() <= 1)
             throw new ValidarException("Só é possivel marcar reuniões para no minimo daqui a 2 dias");
