@@ -10,7 +10,6 @@ import java.util.List;
 public record DadosDetalhamentoReuniao(
         Long id,
         TiposReuniao tipo,
-
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
         LocalDateTime horario,
         Boolean status) {
