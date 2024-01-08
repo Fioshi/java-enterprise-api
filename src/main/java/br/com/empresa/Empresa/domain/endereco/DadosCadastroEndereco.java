@@ -13,6 +13,5 @@ public record DadosCadastroEndereco(
 
         @NotNull
         int numero
-
 ) {
 }

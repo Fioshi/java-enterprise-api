@@ -1,11 +1,11 @@
 package br.com.empresa.Empresa.service;
 
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
-import br.com.empresa.Empresa.domain.funcionario.FuncionarioRepository;
+import br.com.empresa.Empresa.domain.repository.FuncionarioRepository;
 import br.com.empresa.Empresa.domain.reuniao.DadosAgendamentoReuniao;
 import br.com.empresa.Empresa.domain.reuniao.DadosDetalhamentoReuniao;
 import br.com.empresa.Empresa.domain.reuniao.Reuniao;
-import br.com.empresa.Empresa.domain.reuniao.ReuniaoRepository;
+import br.com.empresa.Empresa.domain.repository.ReuniaoRepository;
 import br.com.empresa.Empresa.domain.reuniao.validacoes.ValidadorAgendarReuniao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

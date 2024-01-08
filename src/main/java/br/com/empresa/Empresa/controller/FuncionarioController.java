@@ -1,11 +1,6 @@
 package br.com.empresa.Empresa.controller;
 
-import br.com.empresa.Empresa.domain.departamento.DepartamentoRepository;
-import br.com.empresa.Empresa.domain.endereco.DadosViaCep;
-import br.com.empresa.Empresa.domain.endereco.Endereco;
-import br.com.empresa.Empresa.domain.endereco.EnderecoRepository;
 import br.com.empresa.Empresa.domain.funcionario.*;
-import br.com.empresa.Empresa.domain.funcionario.validacoes.ValidadorCadastroFuncionario;
 import br.com.empresa.Empresa.service.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.stream.Stream;
 
 @RestController

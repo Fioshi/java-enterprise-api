@@ -33,7 +33,6 @@ public class Endereco {
 
     private String cep;
 
-
     public Endereco(DadosCadastroEndereco endereco, DadosViaCep dadosViaCep) {
         this.logradouro = dadosViaCep.logradouro();
         this.numero = endereco.numero();

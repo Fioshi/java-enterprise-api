@@ -1,6 +1,7 @@
 package br.com.empresa.Empresa.domain.usuario;
 
 
+import br.com.empresa.Empresa.domain.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

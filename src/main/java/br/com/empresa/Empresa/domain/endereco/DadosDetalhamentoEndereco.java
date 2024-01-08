@@ -1,21 +1,31 @@
 package br.com.empresa.Empresa.domain.endereco;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record DadosDetalhamentoEndereco(
 
+        @NotBlank
         String logradouro,
 
+        @NotNull
         int numero,
 
+        @NotBlank
         String complemento,
 
+        @NotBlank
         String bairro,
 
+        @NotBlank
         String localidade,
 
+        @NotBlank
         String uf,
 
-        String cep
+        @NotBlank
 
+        String cep
 ) {
     public DadosDetalhamentoEndereco (Endereco endereco){
         this(

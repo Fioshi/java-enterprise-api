@@ -3,7 +3,7 @@ package br.com.empresa.Empresa.domain.funcionario.validacoes;
 import br.com.empresa.Empresa.domain.ValidarException;
 import br.com.empresa.Empresa.domain.funcionario.DadosCadastroFuncionario;
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
-import br.com.empresa.Empresa.domain.funcionario.FuncionarioRepository;
+import br.com.empresa.Empresa.domain.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
