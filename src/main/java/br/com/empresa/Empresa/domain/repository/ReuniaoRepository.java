@@ -1,5 +1,6 @@
-package br.com.empresa.Empresa.domain.reuniao;
+package br.com.empresa.Empresa.domain.repository;
 
+import br.com.empresa.Empresa.domain.reuniao.Reuniao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
