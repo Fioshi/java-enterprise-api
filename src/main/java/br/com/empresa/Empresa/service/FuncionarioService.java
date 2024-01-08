@@ -1,18 +1,17 @@
 package br.com.empresa.Empresa.service;
 
-import br.com.empresa.Empresa.domain.departamento.DepartamentoRepository;
+import br.com.empresa.Empresa.domain.repository.DepartamentoRepository;
 import br.com.empresa.Empresa.domain.endereco.DadosViaCep;
 import br.com.empresa.Empresa.domain.endereco.Endereco;
-import br.com.empresa.Empresa.domain.endereco.EnderecoRepository;
+import br.com.empresa.Empresa.domain.repository.EnderecoRepository;
 import br.com.empresa.Empresa.domain.funcionario.*;
 import br.com.empresa.Empresa.domain.funcionario.validacoes.ValidadorCadastroFuncionario;
+import br.com.empresa.Empresa.domain.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -24,36 +23,28 @@ public class FuncionarioService {
     private FuncionarioRepository funcionarioRepository;
 
     @Autowired
+    private EnderecoService enderecoService;
+
+    @Autowired
     private DepartamentoRepository departamentoRepository;
 
     @Autowired
     private List<ValidadorCadastroFuncionario> validadores;
 
-    @Autowired
-    private EnderecoRepository enderecoRepository;
-
-    @Autowired
-    private RestTemplate template;
-
     public Funcionario cadastro(DadosCadastroFuncionario dados) {
 
         validadores.forEach(v -> v.validar(dados));
 
+        var endereco = enderecoService.cadastroEndereco(dados);
+
         var departamento = departamentoRepository.getReferenceById(dados.departamento());
 
-        var url = "https://viacep.com.br/ws/" + dados.endereco().cep() + "/json/";
-
-        DadosViaCep dadosViaCep = template.getForObject(url, DadosViaCep.class);
-
-        var endereco = new Endereco(dados.endereco(), dadosViaCep);
         var funcionario = new Funcionario(dados, departamento, endereco);
-
-        funcionarioRepository.save(funcionario);
-        enderecoRepository.save(endereco);
 
         departamento.getFuncionarios().add(funcionario);
 
-        
+        funcionarioRepository.save(funcionario);
+
         return funcionario;
     }
 
