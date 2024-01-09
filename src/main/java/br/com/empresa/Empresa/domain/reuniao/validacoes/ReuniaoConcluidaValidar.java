@@ -28,9 +28,7 @@ public class ReuniaoConcluidaValidar {
     @Transactional
     public void retirar() {
 
-        var reuniaoList = reuniaoRepository.findAllByStatusTrue();
-
-        reuniaoList.forEach(r -> {
+        reuniaoRepository.findAllByStatusTrue().forEach(r -> {
 
             r.getFuncionarios().forEach( f -> {
                 if (Duration.between(LocalDateTime.now(), r.getHorario()).toDays() <= 1) {
