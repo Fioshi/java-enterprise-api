@@ -3,13 +3,13 @@ package br.com.empresa.Empresa.domain.funcionario;
 import br.com.empresa.Empresa.domain.departamento.Departamento;
 import br.com.empresa.Empresa.domain.endereco.Endereco;
 import br.com.empresa.Empresa.domain.reuniao.Reuniao;
+import br.com.empresa.Empresa.domain.tarefa.Tarefa;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_funcionario")
@@ -38,6 +38,7 @@ public class Funcionario {
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "id_reuniao")
     private Reuniao reuniao;
@@ -46,11 +47,10 @@ public class Funcionario {
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
-    private boolean status;
+    @ManyToMany(mappedBy = "responsaveis")
+    private Set<Tarefa> tarefas;
 
-    public void setReuniao(Reuniao reuniao) {
-        this.reuniao = reuniao;
-    }
+    private boolean status;
 
     public void excluir() {
         this.status = false;

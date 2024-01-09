@@ -2,6 +2,7 @@ package br.com.empresa.Empresa.domain.reuniao;
 
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,10 @@ public record DadosAgendamentoReuniao(
         LocalDateTime horario,
 
         @NotNull
-        TiposReuniao tipo
+        TiposReuniao tipo,
+
+        @NotBlank
+        String mensagem
 
 ) {
 }

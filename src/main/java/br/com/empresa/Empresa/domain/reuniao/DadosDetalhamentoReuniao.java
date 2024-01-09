@@ -12,10 +12,13 @@ public record DadosDetalhamentoReuniao(
         TiposReuniao tipo,
         @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
         LocalDateTime horario,
-        Boolean status) {
+        Boolean status,
+
+        String mensagem
+        ) {
 
     public DadosDetalhamentoReuniao(Reuniao reuniao){
         this(reuniao.getId() ,reuniao.getTipo(),
-                reuniao.getHorario(), reuniao.isStatus());
+                reuniao.getHorario(), reuniao.isStatus(), reuniao.getMensagem());
     }
 }
