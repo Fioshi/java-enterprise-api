@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("departamento")
+@RequestMapping("/api/departamento")
 public class DepartamentoController {
 
     @Autowired

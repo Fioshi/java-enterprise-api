@@ -18,10 +18,8 @@ import java.util.stream.Stream;
 @RequestMapping("/api/funcionario")
 public class FuncionarioController {
 
-
     @Autowired
-    FuncionarioService service;
-
+    private FuncionarioService service;
 
     @PostMapping
     @Transactional
@@ -50,6 +48,7 @@ public class FuncionarioController {
     public ResponseEntity<Stream<DadosDetalhamentoFuncionario>> listar(@PageableDefault(size = 5,
             sort = {"nome"}) Pageable pageable) {
         var page = service.listar(pageable);
+
         return ResponseEntity.ok(page);
     }
 

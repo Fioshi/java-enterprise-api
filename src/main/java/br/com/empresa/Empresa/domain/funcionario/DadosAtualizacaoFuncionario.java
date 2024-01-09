@@ -16,7 +16,12 @@ public record DadosAtualizacaoFuncionario(
         String email
 
 ) {
-//    public DadosAtualizacaoFuncionario(Funcionario funcionario) {
-//        this(funcionario.getCpf(), funcionario.getNome(), funcionario.getSobrenome(), funcionario.getEmail());
-//    }
+    public DadosAtualizacaoFuncionario(Funcionario funcionario) {
+        this(
+                funcionario.getId(),
+                funcionario.getCpf(),
+                funcionario.getNome(),
+                funcionario.getSobrenome(),
+                funcionario.getEmail());
+    }
 }

@@ -18,6 +18,7 @@ public class EnderecoService {
     private EnderecoRepository enderecoRepository;
 
     public Endereco cadastroEndereco(DadosCadastroFuncionario dados){
+
         var url = "https://viacep.com.br/ws/" + dados.endereco().cep() + "/json/";
 
         DadosViaCep dadosViaCep = template.getForObject(url, DadosViaCep.class);
