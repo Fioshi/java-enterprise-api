@@ -9,7 +9,6 @@ create table tb_tarefa(
     primary key (id_tarefa)
 );
 
-
 CREATE TABLE tb_funcionario_tarefa (
     id_funcionario BIGINT,
     id_tarefa BIGINT,
@@ -17,3 +16,4 @@ CREATE TABLE tb_funcionario_tarefa (
     FOREIGN KEY (id_funcionario) REFERENCES tb_funcionario (id_funcionario),
     FOREIGN KEY (id_tarefa) REFERENCES tb_tarefa (id_tarefa)
 );
+

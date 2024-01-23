@@ -1,16 +1,15 @@
 package br.com.empresa.Empresa.domain.tarefa;
 
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
+import br.com.empresa.Empresa.domain.historico.Historico;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 
 @Entity
 @Table(name = "tb_tarefa")
@@ -29,6 +28,9 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
+    @OneToMany(mappedBy = "tarefa")
+    private List<Historico> historico;
+
     @ManyToMany
     @JoinTable(
             name = "tb_funcionario_tarefa",
@@ -43,12 +45,24 @@ public class Tarefa {
 
     private String descricao;
 
-    public Tarefa(DadosCadastroTarefa dadosCadastroTarefa, Set<Funcionario> funcionarios) {
+    private LocalDate data;
+
+    public Tarefa(DadosCadastroTarefa dadosCadastroTarefa, Set<Funcionario> funcionarios ) {
+        this.historico = new LinkedList<>();
         this.nome = dadosCadastroTarefa.nome();
         this.prioridade = dadosCadastroTarefa.prioridade();
         this.responsaveis = funcionarios;
         this.estado = dadosCadastroTarefa.estado();
         this.orcamento = dadosCadastroTarefa.orcamento();
         this.descricao = dadosCadastroTarefa.descricao();
+        this.data = dadosCadastroTarefa.date();
+    }
+
+    @PrePersist
+    @PreUpdate
+    public void adicionaHistorico(){
+
+
+
     }
 }

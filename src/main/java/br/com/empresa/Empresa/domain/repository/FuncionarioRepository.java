@@ -12,6 +12,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 
     List<Funcionario> findAllByStatusTrue(Pageable paginacao);
 
+    List<Funcionario> findAllByStatusTrue();
+
     List<Funcionario> findAllByStatusTrueOrderByNome();
 
     List<Funcionario> findByNomeContaining(String keyword);
