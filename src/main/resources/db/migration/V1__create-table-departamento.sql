@@ -10,6 +10,7 @@ create table tb_departamento (
 create table tb_funcionario (
 
     id_funcionario bigint not null auto_increment,
+    id_endereco bigint not null,
     id_departamento bigint not null,
     nome varchar(25) not null,
     sobrenome varchar(25) not null,
