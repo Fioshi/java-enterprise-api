@@ -65,4 +65,11 @@ public class Tarefa {
 
 
     }
+
+    public void atualizar(DadosAtualizacaoTarefa dto) {
+        if (dto.descricao() != null)
+            this.descricao = dto.descricao();
+        if (dto.estado() != null)
+            this.estado = dto.estado();
+    }
 }

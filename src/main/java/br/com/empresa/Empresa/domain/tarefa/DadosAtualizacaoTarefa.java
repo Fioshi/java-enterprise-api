@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 public record DadosAtualizacaoTarefa(
 
         @NotNull
+        Long id,
+        @NotNull
         Estado estado,
 
         @NotBlank

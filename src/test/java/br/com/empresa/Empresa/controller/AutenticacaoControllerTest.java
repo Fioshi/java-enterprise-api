@@ -28,7 +28,6 @@ class AutenticacaoControllerTest {
     void deveRetornar400ComErro() throws Exception {
         //ARRANGE
         var json = "{}";
-
         //ACT
         var resposta = mockMvc.perform(
                 post("/api/login").accept(json).contentType(MediaType.APPLICATION_JSON)
@@ -36,8 +35,5 @@ class AutenticacaoControllerTest {
 
         //ASSERT
         Assertions.assertEquals(400, resposta.getStatus());
-
     }
-
-
 }

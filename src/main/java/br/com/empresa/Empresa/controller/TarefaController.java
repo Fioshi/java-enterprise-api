@@ -30,5 +30,12 @@ public class TarefaController {
         return ResponseEntity.created(uri).body(new DadosDetalhamentoTarefa(tarefa));
     }
 
+    @PutMapping
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTarefa> atualizar(@RequestBody @Valid DadosAtualizacaoTarefa dto){
+        var tarefa = service.atualizar(dto);
+        return ResponseEntity.ok(new DadosDetalhamentoTarefa(tarefa));
+    }
+
 }
 

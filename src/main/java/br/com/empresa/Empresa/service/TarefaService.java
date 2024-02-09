@@ -4,8 +4,10 @@ import br.com.empresa.Empresa.domain.historico.Historico;
 import br.com.empresa.Empresa.domain.repository.FuncionarioRepository;
 import br.com.empresa.Empresa.domain.repository.HistoricoRepository;
 import br.com.empresa.Empresa.domain.repository.TarefaRepository;
+import br.com.empresa.Empresa.domain.tarefa.DadosAtualizacaoTarefa;
 import br.com.empresa.Empresa.domain.tarefa.DadosCadastroTarefa;
 import br.com.empresa.Empresa.domain.tarefa.Tarefa;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +42,9 @@ public class TarefaService {
         return tarefa;
     }
 
-    public Tarefa atualizar() {
-        return new Tarefa();
+    public Tarefa atualizar(DadosAtualizacaoTarefa dto) {
+        var tarefa = tarefaRepository.getReferenceById(dto.id());
+        tarefa.atualizar(dto);
+        return tarefa;
     }
 }
