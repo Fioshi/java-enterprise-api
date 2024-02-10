@@ -21,6 +21,7 @@ public class Tarefa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tarefa")
     private Long id;
 
     private String nome;
@@ -55,10 +56,9 @@ public class Tarefa {
         this.estado = dadosCadastroTarefa.estado();
         this.orcamento = dadosCadastroTarefa.orcamento();
         this.descricao = dadosCadastroTarefa.descricao();
-        this.data = dadosCadastroTarefa.date();
+        this.data = dadosCadastroTarefa.data();
     }
 
-    @PrePersist
     @PreUpdate
     public void adicionaHistorico(){
 

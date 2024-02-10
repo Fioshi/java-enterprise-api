@@ -33,18 +33,30 @@ public class TarefaService {
         var responsaveis = new HashSet<>(funcionarios);
 
         var tarefa = new Tarefa(dadosCadastroTarefa, responsaveis);
+
         var historico = new Historico(tarefa);
+
         tarefa.getHistorico().add(historico);
 
         tarefaRepository.save(tarefa);
+
         historicoRepository.save(historico);
 
         return tarefa;
     }
 
     public Tarefa atualizar(DadosAtualizacaoTarefa dto) {
+
         var tarefa = tarefaRepository.getReferenceById(dto.id());
+
         tarefa.atualizar(dto);
+
+        Historico historico = new Historico(tarefa);
+
+        tarefa.getHistorico().add(historico);
+
+        historicoRepository.save(historico);
+
         return tarefa;
     }
 }

@@ -29,6 +29,6 @@ public record DadosCadastroTarefa(
         String descricao,
 
         @NotNull
-        LocalDate date
+        LocalDate data
 ) {
 }

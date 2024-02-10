@@ -1,6 +1,7 @@
 package br.com.empresa.Empresa.domain.historico;
 
 import br.com.empresa.Empresa.domain.funcionario.Funcionario;
+import br.com.empresa.Empresa.domain.tarefa.DadosAtualizacaoTarefa;
 import br.com.empresa.Empresa.domain.tarefa.Estado;
 import br.com.empresa.Empresa.domain.tarefa.Prioridade;
 import br.com.empresa.Empresa.domain.tarefa.Tarefa;
@@ -42,4 +43,6 @@ public class Historico {
         this.data = tarefa.getData();
         this.tarefa = tarefa;
     }
+
+
 }
