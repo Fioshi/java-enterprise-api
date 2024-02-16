@@ -23,6 +23,7 @@ public class EnderecoService {
 
         DadosViaCep dadosViaCep = template.getForObject(url, DadosViaCep.class);
 
+        assert dadosViaCep != null;
         var endereco = new Endereco(dados.endereco(), dadosViaCep);
 
         enderecoRepository.save(endereco);

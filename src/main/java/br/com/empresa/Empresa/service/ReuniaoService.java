@@ -30,9 +30,8 @@ public class ReuniaoService {
     private EmailService emailService;
 
     public Stream<DadosDetalhamentoReuniao> listar() {
-        var lista = reuniaoRepository.findAll()
+        return reuniaoRepository.findAll()
                 .stream().map(DadosDetalhamentoReuniao::new);
-        return lista;
     }
 
     public DadosDetalhamentoReuniao agendar(DadosAgendamentoReuniao dados) {
@@ -41,7 +40,9 @@ public class ReuniaoService {
 
         var listF = new LinkedList<Funcionario>();
 
-        dados.funcionarios().forEach(f -> listF.add(funcionarioRepository.getReferenceById(f)));
+        dados.funcionarios().forEach(f ->
+                listF.add(funcionarioRepository.getReferenceById(f)
+                ));
 
         var reuniao = new Reuniao(dados, listF);
 
