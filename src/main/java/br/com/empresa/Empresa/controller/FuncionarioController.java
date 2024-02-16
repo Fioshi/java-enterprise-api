@@ -1,5 +1,6 @@
 package br.com.empresa.Empresa.controller;
 
+import br.com.empresa.Empresa.domain.ValidarException;
 import br.com.empresa.Empresa.domain.funcionario.*;
 import br.com.empresa.Empresa.service.FuncionarioService;
 import jakarta.validation.Valid;
@@ -23,8 +24,8 @@ public class FuncionarioController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroFuncionario dados,
-                                    UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<DadosDetalhamentoFuncionario> cadastrar(@RequestBody @Validated DadosCadastroFuncionario dados,
+                                                                  UriComponentsBuilder uriBuilder) {
         var funcionario = service.cadastro(dados);
         var uri = uriBuilder.path("/funcionario/{id}").buildAndExpand(funcionario.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoFuncionario(funcionario));
@@ -32,9 +33,13 @@ public class FuncionarioController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id) {
-        service.excluir(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        try {
+            service.excluir(id);
+            return ResponseEntity.ok("Exclusão concluida com sucesso");
+        } catch (ValidarException erro) {
+            return ResponseEntity.badRequest().body(erro.getMessage());
+        }
     }
 
     @PutMapping
@@ -42,6 +47,7 @@ public class FuncionarioController {
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoFuncionario dados) {
         var funcionario = service.atualizar(dados);
         return ResponseEntity.ok(new DadosDetalhamentoFuncionario(funcionario));
+
     }
 
     @GetMapping
@@ -53,20 +59,20 @@ public class FuncionarioController {
     }
 
     @GetMapping("/busca/all")
-    public ResponseEntity buscaAll() {
+    public ResponseEntity<Stream<DadosDetalhamentoFuncionario>> buscaAll() {
         var funcionarios = service.buscaAll();
         return ResponseEntity.ok(funcionarios);
     }
 
     @GetMapping("/busca")
-    public ResponseEntity buscarFiltrado(@RequestParam("keyword") String keyword) {
+    public ResponseEntity<Stream<DadosDetalhamentoFuncionario>> buscarFiltrado(@RequestParam("keyword") String keyword) {
         var funcionarios = service.buscaFiltrada(keyword);
         return ResponseEntity.ok(funcionarios);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity buscar(@PathVariable Long id) {
+    public ResponseEntity<DadosDetalhamentoFuncionario> buscar(@PathVariable Long id) {
         var funcionario = service.busca(id);
         return ResponseEntity.ok(new DadosDetalhamentoFuncionario(funcionario));
     }

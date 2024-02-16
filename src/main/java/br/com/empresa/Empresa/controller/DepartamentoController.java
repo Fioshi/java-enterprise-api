@@ -4,6 +4,7 @@ import br.com.empresa.Empresa.domain.departamento.DadosCadastroDepartamento;
 import br.com.empresa.Empresa.domain.departamento.DadosDetalhamentoDepartamento;
 import br.com.empresa.Empresa.domain.departamento.Departamento;
 import br.com.empresa.Empresa.domain.repository.DepartamentoRepository;
+import br.com.empresa.Empresa.domain.tarefa.DadosDetalhamentoTarefa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +21,8 @@ public class DepartamentoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Validated DadosCadastroDepartamento dados,
-                                    UriComponentsBuilder uriBuilder){
+    public ResponseEntity<DadosDetalhamentoDepartamento> cadastrar(@RequestBody @Validated DadosCadastroDepartamento dados,
+                                                             UriComponentsBuilder uriBuilder){
         var departamento = new Departamento(dados);
         repository.save(departamento);
 
