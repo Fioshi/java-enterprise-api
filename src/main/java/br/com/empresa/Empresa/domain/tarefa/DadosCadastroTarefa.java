@@ -19,8 +19,6 @@ public record DadosCadastroTarefa(
         @NotNull
         List<Long> reponsaveis,
 
-        @NotNull
-        Estado estado,
 
         @NotNull
         BigDecimal orcamento,

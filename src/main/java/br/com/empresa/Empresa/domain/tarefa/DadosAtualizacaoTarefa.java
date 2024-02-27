@@ -7,8 +7,6 @@ public record DadosAtualizacaoTarefa(
 
         @NotNull
         Long id,
-        @NotNull
-        Estado estado,
 
         @NotBlank
         String descricao

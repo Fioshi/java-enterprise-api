@@ -40,7 +40,7 @@ public class Historico {
     public Historico (Tarefa tarefa) {
         this.estado = tarefa.getEstado();
         this.descricao = tarefa.getDescricao();
-        this.data = tarefa.getData();
+        this.data = tarefa.getDataAtt();
         this.tarefa = tarefa;
     }
 
