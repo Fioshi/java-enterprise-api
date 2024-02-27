@@ -9,4 +9,7 @@ import java.util.List;
 public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
     @Query("SELECT t FROM Tarefa t where t.estado = PENDENTE and t.estado = ANDAMENTO")
     List<Tarefa> findAllByPendenteAndAndamento();
+
+    @Query("SELECT sum(t.orcamento) FROM Tarefa t")
+    Double somaOrcamento();
 }

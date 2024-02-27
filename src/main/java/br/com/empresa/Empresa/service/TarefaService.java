@@ -15,6 +15,7 @@ import jakarta.xml.bind.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 
@@ -40,9 +41,16 @@ public class TarefaService {
         var funcionarios = funcionarioRepository.findAllById(
                 dadosCadastroTarefa.reponsaveis());
 
+        var soma = tarefaRepository.somaOrcamento();
+
+        if (soma == null )
+            soma = 0.0;
+
         var responsaveis = new HashSet<>(funcionarios);
 
         var tarefa = new Tarefa(dadosCadastroTarefa, responsaveis);
+
+        tarefa.preDados(soma);
 
         var historico = new Historico(tarefa);
 
@@ -58,9 +66,6 @@ public class TarefaService {
     public Tarefa atualizar(DadosAtualizacaoTarefa dto) {
 
         var tarefa = tarefaRepository.getReferenceById(dto.id());
-
-        if (tarefa.getEstado() == Estado.CONCLUIDO)
-            throw new ValidarException("Não é possivel fazer alterações em tarefas concluidas");
 
         tarefa.atualizar(dto);
 

@@ -4,6 +4,7 @@ import br.com.empresa.Empresa.domain.funcionario.Funcionario;
 import br.com.empresa.Empresa.domain.historico.Historico;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+
 public class Tarefa {
 
     @Id
@@ -48,28 +50,41 @@ public class Tarefa {
 
     private LocalDate data;
 
+    private LocalDate dataAtt;
+
+    private Double risco;
+
     public Tarefa(DadosCadastroTarefa dadosCadastroTarefa, Set<Funcionario> funcionarios ) {
         this.historico = new LinkedList<>();
         this.nome = dadosCadastroTarefa.nome();
         this.prioridade = dadosCadastroTarefa.prioridade();
         this.responsaveis = funcionarios;
-        this.estado = dadosCadastroTarefa.estado();
         this.orcamento = dadosCadastroTarefa.orcamento();
         this.descricao = dadosCadastroTarefa.descricao();
         this.data = dadosCadastroTarefa.data();
-    }
-
-    @PreUpdate
-    public void adicionaHistorico(){
-
-
-
+        this.dataAtt = LocalDate.now();
+        this.estado = Estado.PENDENTE;
     }
 
     public void atualizar(DadosAtualizacaoTarefa dto) {
         if (dto.descricao() != null)
             this.descricao = dto.descricao();
-        if (dto.estado() != null)
-            this.estado = dto.estado();
     }
+
+    public void preDados(Double soma){
+
+        int indiceDeOrcamento = 0;
+        
+        if (this.orcamento.doubleValue() > soma / 1.5)
+            indiceDeOrcamento = 3;
+        if (this.orcamento.doubleValue() < soma / 1.5)
+            indiceDeOrcamento = 2;
+        if (this.orcamento.doubleValue() < soma / 2)
+            indiceDeOrcamento = 1;
+        
+        this.risco = (0.4 * 4) + (0.3 * 3) + (0.2 * indiceDeOrcamento)
+                + (0.1 * this.responsaveis.size()) + this.prioridade.getValue();
+    }
+
+
 }
