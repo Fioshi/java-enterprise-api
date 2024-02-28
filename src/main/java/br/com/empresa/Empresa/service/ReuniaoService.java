@@ -30,7 +30,7 @@ public class ReuniaoService {
     private EmailService emailService;
 
     public Stream<DadosDetalhamentoReuniao> listar() {
-        return reuniaoRepository.findAll()
+        return reuniaoRepository.findAllByStatusTrue()
                 .stream().map(DadosDetalhamentoReuniao::new);
     }
 
