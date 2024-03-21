@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CpfValidador implements ValidadorCadastroFuncionario {
     public void validar(DadosCadastroFuncionario dados) {
         // Remove caracteres não numéricos do CPF
-        // var cpf = funcionario.cpf().replaceAll("[^0-9]", "");
+        // var cpf = funcionario.cpf().replaceAll("[^0-9]", "");.
         var cpf = dados.cpf();
 
         // Verifique se o CPF tem 11 dígitos
