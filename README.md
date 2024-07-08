@@ -1,41 +1,58 @@
-# Empresa API Controller
+# 🌟 Empresa API Controller 🌟
 
-Projeto API Empresa feito para realizar controle de funcionarios, departamento e reuniões.
+🎉 Bem-vindo ao projeto **Empresa API Controller**! 🎉
 
-> Em desenvolvimento
+Este projeto foi desenvolvido para gerenciar funcionários, departamentos, reuniões, tarefas e projetos de maneira eficiente e organizada. 📊
 
-API produzida com **Spring-Boot** com **Spring-web, bean validation e spring-data JPA** até o momento
+## 🚧 Em Desenvolvimento 🚧
 
-Para conseguir utilizar acesse o arquivo `application.properties` e defina a URL do banco de dados desejado, juntamente
-com sua senha e usuario, como o exemplo a baixo:
+A API foi construída utilizando **Spring Boot** com os seguintes módulos:
 
-```
-spring.datasource.url=URL_EXEMPLO
-spring.datasource.username=USUARIO_EXEMPLO
-spring.datasource.password=SENHA_EXEMPLO
-```
+- Spring Web 🌐
+- Bean Validation ✅
+- Spring Data JPA 🗃️
 
-Deixo minha recomendação para utilizar o banco de dados em memoria do h2 para testes. Para acessá lo faça a seguinte
-configuração no arquivo `application.properties`:
+## 🔧 Configuração Inicial 🔧
 
-```
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=password
-```
+Para começar a utilizar a API, siga estes passos simples:
 
-Para documentação foi disponibilizado o swagger-ui para facilitar leitura e tornar a pratica mais dinâmica. Para acessar
-rode a aplicação e execute a seguinte URL no navegador de preferência:
+1. Acesse o arquivo `application.properties`.
+2. Defina a URL do banco de dados desejado, juntamente com seu usuário e senha, como no exemplo abaixo:
 
-`http://localhost:8080/swagger-ui.html`
+    ```properties
+    spring.datasource.url=URL_EXEMPLO
+    spring.datasource.username=USUARIO_EXEMPLO
+    spring.datasource.password=SENHA_EXEMPLO
+    ```
 
-Para conseguir usar com sucesso o sistema de envio de emails da aplicação será necessario efetuar algumas configurações no `application.properties`
+### 💡 Dica: Banco de Dados em Memória H2 💡
 
-```
-spring.mail.username=********@gmail.com
-spring.mail.password=**************
-support.mail=*****@gmail.com
-```
-Substitua o "username" e "support.mail" pelo mesmo email que quiser utilizar, e na senha coloque sua senha usual de login. Caso tenha ferificação em 2 etapas, será necessârio utilizar uma senha de app. Para conseguir a sua siga esses passos do proprio google
-`https://support.google.com/accounts/answer/185833?hl=pt-BR`
+Para testes, recomendamos o uso do banco de dados em memória H2. Configure da seguinte forma:
+
+    ```properties
+    spring.datasource.url=jdbc:h2:mem:testdb
+    spring.datasource.driverClassName=org.h2.Driver
+    spring.datasource.username=sa
+    spring.datasource.password=password
+    ```
+
+## 📜 Documentação com Swagger 📜
+
+A documentação da API está disponível via **Swagger-UI**. Isso facilita a leitura e torna a prática mais dinâmica! Para acessá-la, rode a aplicação e acesse a seguinte URL no seu navegador favorito:
+
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) 🚀
+
+## ✉️ Configuração do Sistema de Envio de Emails ✉️
+
+Para usar o sistema de envio de emails, configure o `application.properties` com as seguintes informações:
+
+    ```properties
+    spring.mail.username=********@gmail.com
+    spring.mail.password=**************
+    support.mail=*****@gmail.com
+    ```
+
+Substitua `username` e `support.mail` pelo email que deseja utilizar e insira sua senha usual de login. Caso tenha verificação em duas etapas, será necessário utilizar uma **senha de app**. Para obter sua senha de app, siga estes passos do próprio Google: [Suporte Google](https://support.google.com/accounts/answer/185833?hl=pt-BR) 🔐
+
+---
+
