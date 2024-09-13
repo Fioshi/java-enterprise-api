@@ -7,5 +7,4 @@ public record DadosDetalhamentoDepartamento(Long id, TiposDepartamento nome) {
                 departamento.getId(),
                 departamento.getNome());
     }
-
 }

@@ -33,10 +33,13 @@ public class Reuniao {
 
     private boolean status;
 
+    private String mensagem;
+
     public Reuniao(DadosAgendamentoReuniao dados, LinkedList<Funcionario> listF) {
         this.status = true;
         this.horario = dados.horario();
         this.tipo = dados.tipo();
+        this.mensagem = dados.mensagem();
         this.funcionarios = listF;
     }
 

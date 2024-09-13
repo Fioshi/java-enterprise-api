@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class EmpresaApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Olá");
 		SpringApplication.run(EmpresaApplication.class, args);
 	}
 
